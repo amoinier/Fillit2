@@ -6,42 +6,12 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 16:25:40 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/16 16:51:24 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/16 20:16:08 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fillit.h>
 #include <libft.h>
-
-char	**ft_init_tab(int nbp)
-{
-	char	**tab;
-	int		size;
-	int		i;
-	int		j;
-
-	i = 0;
-	while ((size = ft_sqrt((nbp) * 4 + i)) == 0)
-		i++;
-	tab = (char **)malloc(sizeof(tab) * (size + 1));
-	if (!tab)
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		tab[i] = (char *)malloc(sizeof(char *) * (size + 1));
-		while (j < size)
-		{
-			tab[i][j] = '.';
-			j++;
-		}
-		tab[i][j] = '\0';
-		i++;
-	}
-	tab[i] = NULL;
-	return (tab);
-}
 
 void	ft_place(char **tc, t_tetr *tetri, int i, int j, int nb)
 {
@@ -49,6 +19,8 @@ void	ft_place(char **tc, t_tetr *tetri, int i, int j, int nb)
 	int	j2;
 
 	i2 = 0;
+	tetri->x = i;
+	tetri->y = j;
 	while (tetri->tab[i2])
 	{
 		j2 = 0;
@@ -72,7 +44,9 @@ int		check_line(char **tc, t_tetr *tab, int i, int j)
 	while (j2 < tab->sy && j + j2 < (int)ft_strlen(tc[i]))
 	{
 		if (tc[i][j + j2] != '.')
+		{
 			return (0);
+		}
 		j2++;
 	}
 	return (1);
@@ -87,6 +61,26 @@ int		check_col(char **tc, t_tetr *tab, int i, int j)
 	{
 		if (tc[i + i2][j] != '.')
 			return (0);
+		i2++;
+	}
+	return (1);
+}
+
+int		check_t(char **tc, t_tetr *tab, int i, int j)
+{
+	int	i2;
+	int	j2;
+
+	i2 = 0;
+	while (i2 < tab->sx && i + i2 < (int)ft_strlen(tc[0]))
+	{
+		j2 = 0;
+		while (j2 < tab->sy && j + j2 < (int)ft_strlen(tc[0]))
+		{
+			if (tc[i + i2][j + j2] != '.' && tab->tab[i2][j2] != '.')
+				return (0);
+			j2++;
+		}
 		i2++;
 	}
 	return (1);
@@ -122,7 +116,7 @@ int		ft_caniplace(char **tc, t_tetr *tab, int nb, int position)
 		j = k;
 		while (tc[i][j])
 		{
-			if (check_line(tc, tab, i, j) && check_col(tc, tab, i, j) && check_check(tc, tab, i, j))
+			if (check_t(tc, tab, i, j) && check_check(tc, tab, i, j))
 			{
 				ft_place(tc, tab, i, j, nb);
 				return (1);
@@ -134,29 +128,32 @@ int		ft_caniplace(char **tc, t_tetr *tab, int nb, int position)
 	return (0);
 }
 
-char	**ft_ft(t_tetr **tab, int nbp, int plus)
+char	**ft_ft(t_tetr **tab, int nbp, int plus, int position)
 {
 	int		nb;
 	char	**tc;
-	int		position;
 
 	nb = 0;
-	position = 0;
 	tc = ft_init_tab(nbp);
-	while (tc[ft_strlen(tc[0])][ft_strlen(tc[0])] != 'A')
+	while (nb < plus)
 	{
-		while (nb < plus)
+		if (!ft_caniplace(tc, tab[nb], nb, position))
 		{
-			if (!ft_caniplace(tc, tab[nb], nb, position))
+			if (tc[tab[0]->x + tab[0]->sx][tab[0]->y + tab[0]->sy + 1] != '\0' )
 			{
-				nbp++;
-				if (tc[0][0] != 0)
-					ft_freetab(tc);
-				ft_ft(tab, nbp, plus);
+				ft_freetab(tc);
+				position++;
+				ft_ft(tab, nbp, plus, position);
 			}
-			nb++;
+			else
+			{
+				ft_freetab(tc);
+				position = 0;
+				nbp++;
+				ft_ft(tab, nbp, plus, position);
+			}
 		}
-		position++;
+		nb++;
 	}
 	return (tc);
 }
