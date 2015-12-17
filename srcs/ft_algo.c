@@ -6,12 +6,30 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 16:25:40 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/16 20:31:51 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/17 12:55:45 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fillit.h>
 #include <libft.h>
+
+void	ft_erase_piece(char **tc, t_tetr *tetri)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < tetri->sx)
+	{
+		j = 0;
+		while (j < tetri->sy)
+		{
+			tc[tetri->x + i][tetri->y + j] = '.';
+			j++;
+		}
+		i++;
+	}
+}
 
 void	ft_place(char **tc, t_tetr *tetri, int i, int j, int nb)
 {
@@ -32,7 +50,7 @@ void	ft_place(char **tc, t_tetr *tetri, int i, int j, int nb)
 		}
 		i2++;
 	}
-	ft_print_tab(tc);
+ 	ft_print_tab(tc);
 	ft_putchar('\n');
 }
 
@@ -72,15 +90,12 @@ int		ft_caniplace(char **tc, t_tetr *tab, int nb, int position)
 
 	i = 0;
 	k = 0;
-	if (nb == 0)
+	while (position > (int)ft_strlen(tc[0]))
 	{
-		while (position > (int)ft_strlen(tc[0]))
-		{
-			position -= ft_strlen(tc[0]);
-			i++;
-		}
-		k = position;
+		position -= ft_strlen(tc[0]);
+		i++;
 	}
+	k = position;
 	while (tc[i])
 	{
 		j = k;
@@ -98,30 +113,27 @@ int		ft_caniplace(char **tc, t_tetr *tab, int nb, int position)
 	return (0);
 }
 
-char	**ft_ft(t_tetr **tab, int nbp, int plus, int position)
+char	**ft_ft(char **tc, t_tetr **tab, int nbp, int nb, int plus, int position)
 {
-	int		nb;
-	char	**tc;
-	char	**tmp;
-
-	nb = 0;
-	tc = ft_init_tab(nbp);
-	while (nb < plus)
+	while (1)
 	{
-		if (!ft_caniplace(tc, tab[nb], nb, position))
+		position = 0;
 		{
-			if (tc[tab[0]->x + tab[0]->sx][tab[0]->y + tab[0]->sy + 1] != '\0' )
+			if (tc[tab[0]->x + tab[0]->sx][tab[0]->y + tab[0]->sy + 1] != '\0')
 			{
-				ft_freetab(tc);
 				position++;
-				ft_ft(tab, nbp, plus, position);
+				ft_erase_piece(tc, tab[nb - 1]);
+				nb -= 2;
+				//	ft_ft(tc, tab, nbp, nb - 1, plus, position);
 			}
 			else
 			{
+				nb = 0;
 				ft_freetab(tc);
 				position = 0;
 				nbp++;
-				ft_ft(tab, nbp, plus, position);
+				tc = ft_init_tab(nbp);
+				ft_ft(tc, tab, nbp, nb, plus, position);
 			}
 		}
 		nb++;

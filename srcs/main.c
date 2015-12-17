@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 14:12:38 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/16 18:49:40 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/17 12:27:18 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ int		main(int ac, char **av)
 	char	*tmp;
 	t_tetr	**tab;
 	int		nbp;
+	int 	nb;
 	int		i;
 	int		position;
+	char	**tc;
 
+	nb = 0;
 	i = 0;
 	position = 0;
 	if (ac != 2)
@@ -65,7 +68,8 @@ int		main(int ac, char **av)
 				}
 				i++;
 			}
-			ft_ft(tab, nbp, nbp, position);
+			tc = ft_init_tab(nbp);
+			ft_ft(tc, tab, nbp, nb, nbp, position);
 		}
 		else
 			ft_putstr("error\n");
