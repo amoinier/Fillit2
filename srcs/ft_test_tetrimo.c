@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 10:07:45 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/17 14:09:54 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/17 14:19:37 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_test_tetrimo(t_tetr *tab)
 
 	i = 0;
 	point = 0;
-	ft_print_tab(tab->tab);
 	while (i < tab->sx)
 	{
 		j = 0;

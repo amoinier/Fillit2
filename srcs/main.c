@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 14:12:38 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/17 14:08:49 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/17 15:34:56 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ int		main(int ac, char **av)
 	int 	nb;
 	int		i;
 	int		position;
+	int		pos2;
 	char	**tc;
 
 	nb = 0;
 	i = 0;
 	position = 0;
+	pos2 = 0;
 	if (ac != 2)
 	{
 		ft_putstr("error\n");
