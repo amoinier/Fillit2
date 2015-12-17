@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 11:31:43 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/17 12:27:27 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/17 14:04:52 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,5 @@ char			**ft_clean_tetri3(char **tab);
 char			**ft_init_tab(int nbp);
 char			**ft_ft(char **tc, t_tetr **tab, int nbp, int nb, int plus, int position);
 void			ft_freetab(char **tab);
-int				ft_istest3(int i, int j, char **tab, int nbdie);
-int				ft_istest4(int i, int j,char **tab, int nbdie);
+int				ft_test_tetrimo(t_tetr *tab);
 #endif

@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 14:12:38 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/17 12:27:18 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/17 14:08:49 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ int		main(int ac, char **av)
 				if (ft_test_tetri(ft_create_dtab(tmp, i)) > 0)
 					tab[i] = tetrnew(ft_clean_tetri3(ft_clean_tetri2(ft_create_dtab(tmp, i))));
 				else
+				{
+					ft_putstr("error\n");
+					return (0);
+				}
+				if (!ft_test_tetrimo(tab[i]))
 				{
 					ft_putstr("error\n");
 					return (0);
