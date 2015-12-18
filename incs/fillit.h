@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 11:31:43 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/17 15:41:16 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/18 12:02:46 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_tetr
 	int			sx;
 	int			sy;
 	char		**tab;
+	int			pos;
 }				t_tetr;
 
 char			*ft_create_str(char **av);
@@ -37,7 +38,7 @@ char			**ft_clean_tetri2(char **tab);
 char			**ft_clean_tetri3(char **tab);
 
 char			**ft_init_tab(int nbp);
-char			**ft_ft(char **tc, t_tetr **tab, int nbp, int nb, int plus, int position);
+char			**ft_ft(char **tc, t_tetr **tab, int nbp, int nb, int plus);
 void			ft_freetab(char **tab);
 int				ft_test_tetrimo(t_tetr *tab);
 #endif
