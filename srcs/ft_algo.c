@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 16:25:40 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/18 16:08:39 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/18 17:02:46 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	ft_place(char **tc, t_tetr *tetri, int i, int j, int nb)
 				tc[i + i2][j + j2] = 'A' + nb;
 		}
 	}
-	ft_print_tab(tc);
-	ft_putchar('\n');
 }
 
 int		check_tetr(char **tc, t_tetr *tab, int i, int j)
@@ -93,18 +91,10 @@ int		ft_ft(char **tc, t_tetr **tab, int nb, int nbp, int n)
 {
 	int	i;
 	int j;
-	int	t;
 
 	i = 0;
 	if (nb == nbp)
 		return (1);
-	if (nb < nbp && tab[0]->x + tab[0]->sx == (int)ft_strlen(tc[0]) && (int)ft_strlen(tc[0]) == tab[0]->y + tab[0]->sy)
-	{
-		ft_freetab(tc);
-		n++;
-		tc = ft_init_tab(n);
-		nb = 0;
-	}
 	while (i < (int)ft_strlen(tc[0]))
 	{
 		j = 0;
@@ -120,6 +110,14 @@ int		ft_ft(char **tc, t_tetr **tab, int nb, int nbp, int n)
 		}
 		i++;
 	}
-	ft_erase_piece(tc, tab[nb - 1], nb - 1);
+	if (nb == 0)
+	{
+		ft_freetab(tc);
+		n++;
+		tc = ft_init_tab(n);
+		ft_ft(tc, tab, 0, nbp, n);
+	}
+	else
+		ft_erase_piece(tc, tab[nb - 1], nb - 1);
 	return (0);
 }

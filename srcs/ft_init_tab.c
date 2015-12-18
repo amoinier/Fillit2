@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 18:47:42 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/16 18:49:27 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/18 17:05:11 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ char	**ft_init_tab(int nbp)
 	i = 0;
 	while ((size = ft_sqrt((nbp) * 4 + i)) == 0)
 		i++;
-	tab = (char **)malloc(sizeof(tab) * (size + 1));
-	if (!tab)
+	if ((tab = (char **)malloc(sizeof(tab) * (size + 1))) == NULL)
 		return (NULL);
 	i = 0;
 	while (i < size)
