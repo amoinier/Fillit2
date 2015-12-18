@@ -6,14 +6,14 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 16:25:40 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/18 12:10:58 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/18 16:08:39 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fillit.h>
 #include <libft.h>
 
-void	ft_erase_piece(char **tc, t_tetr *tetri)
+void	ft_erase_piece(char **tc, t_tetr *tetri, int nb)
 {
 	int	i;
 	int	j;
@@ -24,7 +24,8 @@ void	ft_erase_piece(char **tc, t_tetr *tetri)
 		j = 0;
 		while (j < tetri->sy)
 		{
-			tc[tetri->x + i][tetri->y + j] = '.';
+			if (tc[tetri->x + i][tetri->y + j] == 'A' + nb)
+				tc[tetri->x + i][tetri->y + j] = '.';
 			j++;
 		}
 		i++;
@@ -48,7 +49,7 @@ void	ft_place(char **tc, t_tetr *tetri, int i, int j, int nb)
 				tc[i + i2][j + j2] = 'A' + nb;
 		}
 	}
- 	ft_print_tab(tc);
+	ft_print_tab(tc);
 	ft_putchar('\n');
 }
 
@@ -58,10 +59,10 @@ int		check_tetr(char **tc, t_tetr *tab, int i, int j)
 	int	j2;
 
 	i2 = 0;
-	while (i2 < tab->sx && i + i2 < (int)ft_strlen(tc[0]))
+	while (i2 < tab->sx)
 	{
 		j2 = 0;
-		while (j2 < tab->sy && j + j2 < (int)ft_strlen(tc[0]))
+		while (j2 < tab->sy)
 		{
 			if (tc[i + i2][j + j2] != '.' && tab->tab[i2][j2] != '.')
 				return (0);
@@ -80,78 +81,45 @@ int		check_size(char **tc, t_tetr *tab, int i, int j)
 		return (1);
 }
 
-int		ft_caniplace(char **tc, t_tetr *tab, int nb, int position)
+int		ft_caniplace(char **tc, t_tetr *tab, int i, int j)
 {
-	size_t		i;
-	size_t		j;
-	size_t		k;
+	if (check_size(tc, tab, i, j) && check_tetr(tc, tab, i, j))
+		return (1);
+	else
+		return (0);
+}
+
+int		ft_ft(char **tc, t_tetr **tab, int nb, int nbp, int n)
+{
+	int	i;
+	int j;
+	int	t;
 
 	i = 0;
-	k = 0;
-	while (position > (int)ft_strlen(tc[0]))
+	if (nb == nbp)
+		return (1);
+	if (nb < nbp && tab[0]->x + tab[0]->sx == (int)ft_strlen(tc[0]) && (int)ft_strlen(tc[0]) == tab[0]->y + tab[0]->sy)
 	{
-		position -= ft_strlen(tc[0]);
-		i++;
+		ft_freetab(tc);
+		n++;
+		tc = ft_init_tab(n);
+		nb = 0;
 	}
-	k = (size_t)position;
-	j = k;
-	while (i < ft_strlen(tc[0]))
+	while (i < (int)ft_strlen(tc[0]))
 	{
-		while (j < ft_strlen(tc[0]))
+		j = 0;
+		while (j < (int)ft_strlen(tc[0]))
 		{
-			if (check_tetr(tc, tab, i, j) && check_size(tc, tab, i, j))
+			if (ft_caniplace(tc, tab[nb], i, j))
 			{
-				ft_place(tc, tab, i, j, nb);
-				return (1);
+				ft_place(tc, tab[nb], i, j, nb);
+				if (ft_ft(tc, tab, nb + 1, nbp, n))
+					return (1);
 			}
 			j++;
 		}
 		i++;
-		j = 0;
 	}
+	ft_erase_piece(tc, tab[nb - 1], nb - 1);
 	return (0);
-}
-
-void	ft_pos0(t_tetr **tab, int nbp)
-{
-	int	i;
-
-	i = 1;
-	while (i < nbp)
-	{
-		tab[i]->pos = 0;
-		i++;
-	}
-}
-
-char	**ft_ft(char **tc, t_tetr **tab, int nbp, int nb, int plus)
-{
-	if (!ft_caniplace(tc, tab[nb], nb, tab[nb]->pos))
-	{
-		if (tab[nb - 1]->x + tab[nb - 1]->sx == (int)ft_strlen(tc[0]) && (int)ft_strlen(tc[0]) == tab[nb - 1]->y + tab[nb - 1]->sy)
-		{
-			ft_freetab(tc);
-			tc = ft_init_tab(nbp);
-			tab[0]->pos++;
-			ft_pos0(tab, nbp);
-			ft_ft(tc, tab, nbp, 0, plus);
-		}
-		if (tab[0]->x + tab[0]->sx != (int)ft_strlen(tc[0]) || (int)ft_strlen(tc[0]) != tab[0]->y + tab[0]->sy)
-		{
-			nb--;
-			tab[nb]->pos++;
-			ft_erase_piece(tc, tab[nb]);
-			ft_caniplace(tc, tab[nb], nb, tab[nb]->pos);
-		}
-		else
-		{
-			ft_freetab(tc);
-			nbp++;
-			tc = ft_init_tab(nbp);
-			tab[0]->pos = 0;
-			ft_ft(tc, tab, nbp, 0, plus);
-		}
-	}
-	//ft_ft(tc, tab, nbp, ++nb, plus);
-	return (tc);
 }

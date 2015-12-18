@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 14:12:38 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/18 12:02:39 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/18 16:01:06 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int		main(int ac, char **av)
 				i++;
 			}
 			tc = ft_init_tab(nbp);
-			ft_ft(tc, tab, nbp, nb, nbp);
+			ft_ft(tc, tab, nb, nbp, nbp);
+//			ft_print_tab(tc);
 		}
 		else
 			ft_putstr("error\n");
