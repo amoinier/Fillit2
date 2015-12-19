@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 11:31:43 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/19 16:34:10 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/19 14:57:02 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_tetr
 }				t_tetr;
 
 char			*ft_create_str(char **av);
-int				ft_ts(char *str);
+int				ft_test_str(char *str);
 char			**ft_create_dtab(char *str, int nbp);
 int				ft_test_tetri(char **tab);
 t_tetr			*tetrnew(char **tab);

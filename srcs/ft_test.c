@@ -6,14 +6,14 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 16:36:37 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/17 10:33:28 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/19 16:34:29 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <fillit.h>
 
-int			ft_test_str(char *str)
+int			ft_ts(char *str)
 {
 	int	ijk[3];
 

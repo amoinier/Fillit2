@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 14:23:32 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/11 14:35:46 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/19 13:54:24 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ char			*ft_create_str(char **av)
 		return (0);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-	{
-		ft_putstr("Bad file name or does not exist.\n");
 		return (NULL);
-	}
 	while ((ret = read(fd, &buf, 1)))
 	{
 		tmp = ft_allo_mem(tmp, i, buf);
