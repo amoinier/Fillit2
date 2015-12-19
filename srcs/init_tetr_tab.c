@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test_tetrimo.c                                  :+:      :+:    :+:   */
+/*   init_tetr_tab.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/17 10:07:45 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/19 11:53:49 by amoinier         ###   ########.fr       */
+/*   Created: 2015/12/19 10:50:12 by amoinier          #+#    #+#             */
+/*   Updated: 2015/12/19 10:50:34 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fillit.h>
-#include <libft.h>
 
-int	ft_test_tetrimo(t_tetr *tab)
+t_tetr	**init_tetr_tab(int nb)
 {
-	int	i;
-	int	j;
-	int	point;
-	int	die;
+	int		i;
+	t_tetr	**tab;
 
-	i = 0;
-	point = 0;
-	die = 0;
-	while (i < tab->sx)
-	{
-		j = 0;
-		while (j < tab->sy)
-		{
-			if (tab->tab[i][j] == '.')
-				point++;
-			if (tab->tab[i][j] == '#')
-				die++;
-			j++;
-		}
-		i++;
-	}
-	if (point > 2 || die != 4)
-		return (0);
-	else
-		return (1);
+	i = -1;
+	if ((tab = (t_tetr **)malloc(sizeof(t_tetr *) * (nb + 1))) == NULL)
+		return (NULL);
+	while (++i != nb)
+		tab[i] = NULL;
+	return (tab);
 }

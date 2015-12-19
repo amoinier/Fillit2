@@ -6,7 +6,7 @@
 #    By: amoinier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 12:02:38 by amoinier          #+#    #+#              #
-#    Updated: 2015/12/18 16:50:18 by amoinier         ###   ########.fr        #
+#    Updated: 2015/12/19 10:47:49 by amoinier         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -36,13 +36,13 @@ OBCC =		$(addprefix $(ODIR),$(OBJS))
 
 NORM =		$(SRCC) $(INCC) $(EXEC)
 
-FLAG =		-g -Wall -Wextra -Werror -I$(IDIR)
+FLAG =		-Wall -Wextra -Werror -I$(IDIR)
 
 all: $(NAME) end
 
 $(NAME): header $(OBCC)
 	@echo "  ${BLU}+ Compilation program:${STD} $@"
-	@gcc $(FLAG) $(OBCC) -L$(LDIR) $(LIBS) -o $(NAME)
+	@gcc $(FLAG) $(OBCC) -L$(LDIR) -o $(NAME)
 
 $(ODIR)%.o: $(SDIR)%.c
 	@echo "  ${GRE}+ Compilation:${STD} $^"
@@ -77,9 +77,6 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
-
-do: all
-	./fillit validfile
 
 end:
 	@echo

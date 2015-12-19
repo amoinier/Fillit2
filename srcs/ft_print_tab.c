@@ -1,43 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test_tetrimo.c                                  :+:      :+:    :+:   */
+/*   ft_print_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/17 10:07:45 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/19 11:53:49 by amoinier         ###   ########.fr       */
+/*   Created: 2015/12/03 15:39:39 by amoinier          #+#    #+#             */
+/*   Updated: 2015/12/08 17:14:31 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fillit.h>
-#include <libft.h>
+#include "libft.h"
 
-int	ft_test_tetrimo(t_tetr *tab)
+void	ft_print_tab(char **tab)
 {
 	int	i;
-	int	j;
-	int	point;
-	int	die;
 
 	i = 0;
-	point = 0;
-	die = 0;
-	while (i < tab->sx)
+	while (tab[i])
 	{
-		j = 0;
-		while (j < tab->sy)
-		{
-			if (tab->tab[i][j] == '.')
-				point++;
-			if (tab->tab[i][j] == '#')
-				die++;
-			j++;
-		}
+		ft_putendl(tab[i]);
 		i++;
 	}
-	if (point > 2 || die != 4)
-		return (0);
-	else
-		return (1);
 }

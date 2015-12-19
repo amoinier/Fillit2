@@ -6,12 +6,11 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 16:25:40 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/18 17:47:38 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/19 10:44:48 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fillit.h>
-#include <libft.h>
 
 int		check_tetr(char **tc, t_tetr *tab, int i, int j)
 {

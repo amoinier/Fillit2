@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 11:31:43 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/18 17:45:49 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/19 11:39:07 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct	s_tetr
 	int			sx;
 	int			sy;
 	char		**tab;
-	int			pos;
 }				t_tetr;
 
 char			*ft_create_str(char **av);
@@ -44,5 +43,11 @@ int				ft_ft(char **tc, t_tetr **tab, int nb, int nbp[2]);
 void			ft_freetab(char **tab);
 int				ft_test_tetrimo(t_tetr *tab);
 int				ft_puterror(char *s);
+t_tetr			**init_tetr_tab(int nb);
+t_tetr			*ft_init_tetr(char *tmp, int i);
+
+int				ft_check_tab(char *tmp, int i, int nbp[2], t_tetr **tab);
+
+void			ft_launch_algo(t_tetr **tab, int nbp[2]);
 
 #endif

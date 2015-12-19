@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test_tetrimo.c                                  :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/17 10:07:45 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/19 11:53:49 by amoinier         ###   ########.fr       */
+/*   Created: 2015/12/04 10:49:55 by amoinier          #+#    #+#             */
+/*   Updated: 2015/12/04 10:50:24 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fillit.h>
-#include <libft.h>
+#include "libft.h"
 
-int	ft_test_tetrimo(t_tetr *tab)
+int	ft_sqrt(int nb)
 {
 	int	i;
-	int	j;
-	int	point;
-	int	die;
 
 	i = 0;
-	point = 0;
-	die = 0;
-	while (i < tab->sx)
+	if (nb > 0 && nb < 2147483647)
 	{
-		j = 0;
-		while (j < tab->sy)
+		while (i * i != nb)
 		{
-			if (tab->tab[i][j] == '.')
-				point++;
-			if (tab->tab[i][j] == '#')
-				die++;
-			j++;
+			i++;
+			if (i * i > nb)
+				return (0);
 		}
-		i++;
+		return (i);
 	}
-	if (point > 2 || die != 4)
-		return (0);
 	else
-		return (1);
+		return (0);
 }
