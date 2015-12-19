@@ -6,13 +6,13 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 16:25:40 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/19 10:44:48 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/19 18:24:41 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fillit.h>
 
-int		check_tetr(char **tc, t_tetr *tab, int i, int j)
+static	int		check_tetr(char **tc, t_tetr *tab, int i, int j)
 {
 	int	i2;
 	int	j2;
@@ -32,7 +32,7 @@ int		check_tetr(char **tc, t_tetr *tab, int i, int j)
 	return (1);
 }
 
-int		check_size(char **tc, t_tetr *tab, int i, int j)
+static	int		check_size(char **tc, t_tetr *tab, int i, int j)
 {
 	if (i + tab->sx > (int)ft_strlen(tc[0]) ||
 		j + tab->sy > (int)ft_strlen(tc[0]))
@@ -41,7 +41,7 @@ int		check_size(char **tc, t_tetr *tab, int i, int j)
 		return (1);
 }
 
-int		ft_caniplace(char **tc, t_tetr *tab, int i, int j)
+static	int		ft_caniplace(char **tc, t_tetr *tab, int i, int j)
 {
 	if (check_size(tc, tab, i, j) && check_tetr(tc, tab, i, j))
 		return (1);
@@ -49,14 +49,36 @@ int		ft_caniplace(char **tc, t_tetr *tab, int i, int j)
 		return (0);
 }
 
-void	newtab(char **tc, t_tetr **tab, int nbp[2])
+static	void	newtab(char **tc, t_tetr **tab, int nbp[2])
 {
 	ft_freetab(tc);
 	tc = ft_init_tab(++nbp[1]);
 	ft_ft(tc, tab, 0, nbp);
 }
 
-int		ft_ft(char **tc, t_tetr **tab, int nb, int nbp[2])
+static	int		count_point(char **tc)
+{
+	int	i;
+	int	j;
+	int	pts;
+
+	i = 0;
+	pts = 0;
+	while (i < (int)ft_strlen(tc[0]))
+	{
+		j = 0;
+		while (j < (int)ft_strlen(tc[0]))
+		{
+			if (tc[i][j] == '.')
+				pts++;
+			j++;
+		}
+		i++;
+	}
+	return (pts);
+}
+
+int				ft_ft(char **tc, t_tetr **tab, int nb, int nbp[2])
 {
 	int	ij[2];
 
@@ -76,7 +98,7 @@ int		ft_ft(char **tc, t_tetr **tab, int nb, int nbp[2])
 			}
 		}
 	}
-	if (nb == 0)
+	if (nb == 0 || (count_point(tc) < ((nbp[0] - nb) * 4)))
 		newtab(tc, tab, nbp);
 	else
 		ft_erase_piece(tc, tab[nb - 1], nb - 1);
