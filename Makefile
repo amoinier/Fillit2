@@ -42,7 +42,7 @@ all: $(NAME) end
 
 $(NAME): header $(OBCC)
 	@echo "  ${BLU}+ Compilation program:${STD} $@"
-	@gcc $(FLAG) $(OBCC) -L$(LDIR) -o $(NAME)
+	@gcc $(FLAG) $(OBCC) -o $(NAME)
 
 $(ODIR)%.o: $(SDIR)%.c
 	@echo "  ${GRE}+ Compilation:${STD} $^"
