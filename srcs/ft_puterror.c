@@ -5,23 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/18 17:21:02 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/18 17:22:42 by amoinier         ###   ########.fr       */
+/*   Created: 2015/12/20 17:12:36 by amoinier          #+#    #+#             */
+/*   Updated: 2015/12/20 17:13:07 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fillit.h>
-#include <libft.h>
 
-int	ft_puterror(char *s)
+int		ft_puterror(char *s)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
+	ft_putstr(s);
 	return (0);
 }

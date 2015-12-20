@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_modif_tc.c                                      :+:      :+:    :+:   */
+/*   ft_placerase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/18 17:29:09 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/18 17:40:37 by amoinier         ###   ########.fr       */
+/*   Created: 2015/12/20 16:51:40 by amoinier          #+#    #+#             */
+/*   Updated: 2015/12/20 17:11:06 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
 #include <fillit.h>
 
 void	ft_erase_piece(char **tc, t_tetr *tetri, int nb)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
 	while (i < tetri->sx)

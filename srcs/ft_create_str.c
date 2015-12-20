@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 14:23:32 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/19 13:54:24 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/20 17:14:19 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static	char	*ft_allo_mem(char *tab, int size, char buf)
 
 	x = 0;
 	tab2 = (char*)malloc(sizeof(*tab2) * (size + 1));
+	if (!tab2)
+		return (NULL);
 	while (x < size)
 	{
 		tab2[x] = tab[x];
@@ -44,7 +46,7 @@ char			*ft_create_str(char **av)
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	while ((ret = read(fd, &buf, 1)))
+	while ((ret = read(fd, &buf, 1)) && ret != -1)
 	{
 		tmp = ft_allo_mem(tmp, i, buf);
 		i++;

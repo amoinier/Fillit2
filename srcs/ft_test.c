@@ -6,14 +6,33 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 16:36:37 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/19 16:34:29 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/20 16:56:33 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <fillit.h>
 
-int			ft_ts(char *str)
+int			ft_line(char *str)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	k = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			k++;
+		i++;
+	}
+	if (k != (ft_test_str(str) * 5 - 1))
+		return (0);
+	else
+		return (1);
+}
+
+int			ft_test_str(char *str)
 {
 	int	ijk[3];
 
@@ -98,10 +117,10 @@ int			ft_test_tetri(char **tab)
 
 	i = 0;
 	nbdie = 0;
-	while (i < 4)
+	while (tab[i])
 	{
 		j = 0;
-		while (j < 4)
+		while (tab[i][j])
 		{
 			if (tab[i][j] == '#')
 			{

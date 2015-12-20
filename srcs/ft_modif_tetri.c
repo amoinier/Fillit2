@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 11:55:30 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/19 15:59:16 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/20 17:00:26 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,31 +73,31 @@ char			**ft_clean_tetri3(char **tab)
 
 char			**ft_clean_tetri2(char **tab)
 {
-	int		ij[2];
-	int		k;
+	int		ijk[3];
 	int		tmp;
 
-	ij[0] = -1;
-	k = 0;
-	while (++ij[0] < 4)
+	ijk[0] = -1;
+	ijk[2] = 0;
+	while (++ijk[0] < 4)
 	{
-		ij[1] = -1;
+		ijk[1] = -1;
 		tmp = 0;
-		while (tab[ij[0]][++ij[1]])
+		while (tab[ijk[0]][++ijk[1]])
 		{
-			(tab[ij[0]][ij[1]] == '#') ? tmp = 1 : tmp == 0;
+			if (tab[ijk[0]][ijk[1]] == '#')
+				tmp = 1;
 		}
-		ij[1] = -1;
+		ijk[1] = -1;
 		if (tmp == 1)
 		{
-			while (tab[ij[0]][++ij[1]])
-				tab[k][ij[1]] = tab[ij[0]][ij[1]];
-			tab[k][ij[1]] = '\0';
-			k++;
+			while (tab[ijk[0]][++ijk[1]])
+				tab[ijk[2]][ijk[1]] = tab[ijk[0]][ijk[1]];
+			tab[ijk[2]][ijk[1]] = '\0';
+			ijk[2]++;
 		}
 	}
-	tab[k] = NULL;
-	return (ft_clean_tetri3(tab));
+	tab[ijk[2]] = NULL;
+	return (tab);
 }
 
 void			ft_modif_tetri(char **tab)

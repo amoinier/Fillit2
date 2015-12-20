@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:40:47 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/19 16:29:21 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/20 17:07:18 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ static	int		ft_count_point(char **tab)
 			if (i > 0 && i < 3)
 			{
 				if (havedie(tab[i - 1]) == 1 && havedie(tab[i + 1]) == 1)
-				{
 					return (0);
-				}
 			}
 			if (i > 0 && i < 2)
 			{
@@ -97,7 +95,7 @@ char			**ft_create_dtab(char *str, int nbp)
 	}
 	tab = ft_strsplit(tmp, '\n');
 	if (!ft_count_dieze(tab) || !ft_count_point(tab))
-		return (tab = NULL);
+		return (NULL);
 	ft_modif_tetri(tab);
 	return (tab);
 }
