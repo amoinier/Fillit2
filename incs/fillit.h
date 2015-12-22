@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 11:31:43 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/20 17:25:14 by amoinier         ###   ########.fr       */
+/*   Updated: 2015/12/22 22:51:50 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,6 @@ void			ft_place(char **tc, t_tetr *tetri, int ij[2], int nb);
 
 int				ft_puterror(char *s);
 int				ft_line(char *s);
+
+t_tetr			**init_tetr_tab(int nb);
 #endif

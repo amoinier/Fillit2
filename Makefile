@@ -6,7 +6,7 @@
 #    By: amoinier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 12:02:38 by amoinier          #+#    #+#              #
-#    Updated: 2015/12/20 12:49:07 by fhermoue         ###   ########.fr        #
+#    Updated: 2015/12/22 23:11:37 by amoinier         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -73,6 +73,8 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all
 
 end:
 	@echo
