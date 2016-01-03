@@ -6,7 +6,7 @@
 #    By: amoinier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 12:02:38 by amoinier          #+#    #+#              #
-#    Updated: 2015/12/22 23:11:37 by amoinier         ###   ########.fr        #
+#    Updated: 2016/01/03 15:28:04 by amoinier         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -74,10 +74,10 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all
-
 end:
 	@echo
 	@echo "    This is the end"
 	@echo "    $(CYA)My only friend, the end$(STD)"
 	@echo
+
+.PHONY: all $(NAME) header norme clean fclean re end
