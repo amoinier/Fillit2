@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 15:14:46 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/18 12:13:44 by amoinier         ###   ########.fr       */
+/*   Updated: 2016/01/03 15:21:53 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char			**ft_strsplit(char const *s, char c);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 
-void			ft_print_tab(char **tab);
+int			ft_print_tab(char **tab);
 void			ft_freedtab(char **tab);
 char			*ft_strtrimall(char const *s, char c);
 int				ft_power(int nb, int power);

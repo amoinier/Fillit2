@@ -6,13 +6,13 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 15:39:39 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/08 17:14:31 by amoinier         ###   ########.fr       */
+/*   Updated: 2016/01/03 15:21:06 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print_tab(char **tab)
+int		ft_print_tab(char **tab)
 {
 	int	i;
 
@@ -22,4 +22,5 @@ void	ft_print_tab(char **tab)
 		ft_putendl(tab[i]);
 		i++;
 	}
+	return (1);
 }
