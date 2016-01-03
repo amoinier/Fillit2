@@ -6,7 +6,7 @@
 /*   By: amoinier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/12 16:25:40 by amoinier          #+#    #+#             */
-/*   Updated: 2015/12/20 17:27:42 by amoinier         ###   ########.fr       */
+/*   Updated: 2016/01/03 15:11:12 by amoinier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,16 @@ int		ft_caniplace(char **tc, t_tetr *tab, int ij[2])
 		return (0);
 }
 
-void	ft_newtab(char **tc, t_tetr **tab, int nbp[2])
-{
-	ft_freetab(tc);
-	nbp[1]++;
-	tc = ft_init_tab(nbp[1]);
-	ft_ft(tc, tab, 0, nbp);
-}
-
 int		ft_ft(char **tc, t_tetr **tab, int nb, int nbp[2])
 {
 	int	ij[2];
 
 	ij[0] = 0;
 	if (nb == nbp[0])
+	{
+		ft_print_tab(tc);
 		return (1);
+	}
 	while (ij[0] < (int)ft_strlen(tc[0]))
 	{
 		ij[1] = 0;
@@ -81,8 +76,14 @@ int		ft_ft(char **tc, t_tetr **tab, int nb, int nbp[2])
 		ij[0]++;
 	}
 	if (nb == 0)
-		ft_newtab(tc, tab, nbp);
-	else
+	{
+		ft_freetab(tc);
+		nbp[1]++;
+		tc = ft_init_tab(nbp[1]);
+		if (ft_ft(tc, tab, 0, nbp))
+			return (1);
+	}
+	else if (nb != 0)
 		ft_erase_piece(tc, tab[nb - 1], nb - 1);
 	return (0);
 }
